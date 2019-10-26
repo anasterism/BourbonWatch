@@ -20,9 +20,8 @@ class CreateLocationsTable extends Migration
             $table->string('city', 255);
             $table->string('state', 2);
             $table->string('zip', 11);
-            $table->string('phone', 14);
-            $table->string('latitude', 255);
-            $table->string('longitude', 255);
+            $table->decimal('latitude', 10, 6);
+            $table->string('longitude', 10, 6);
             $table->timestamps();
         });
     }

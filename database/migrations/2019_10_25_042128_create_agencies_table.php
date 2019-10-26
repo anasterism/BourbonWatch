@@ -14,15 +14,15 @@ class CreateAgenciesTable extends Migration
     public function up()
     {
         Schema::create('agencies', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigInteger('id')->primary()->unsigned();
             $table->string('name', 255);
             $table->string('street', 255);
             $table->string('city', 255);
             $table->string('state', 2);
             $table->string('zip', 11);
             $table->string('phone', 14);
-            $table->string('latitude', 255);
-            $table->string('longitude', 255);
+            $table->decimal('latitude', 10, 6);
+            $table->decimal('longitude', 10, 6);
             $table->timestamps();
         });
     }
