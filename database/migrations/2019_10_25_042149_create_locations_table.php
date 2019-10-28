@@ -22,6 +22,7 @@ class CreateLocationsTable extends Migration
             $table->string('zip', 11);
             $table->decimal('latitude', 10, 6);
             $table->string('longitude', 10, 6);
+            $table->integer('search_radius')->default(30);
             $table->timestamps();
         });
     }

@@ -14,31 +14,34 @@ class LocationSeeder extends Seeder
     {
         $data = [
             [
-                'name'     => "Home",
-                'street'   => '4036 S. Tecumseh Rd.',
-                'city'     => 'Springfield',
-                'state'    => 'OH',
-                'zip'      => '45502',
-                'latitude' => '39.869081',
-                'logitude' => '-83.889457',
+                'name'          => "Home",
+                'street'        => '4036 S. Tecumseh Rd.',
+                'city'          => 'Springfield',
+                'state'         => 'OH',
+                'zip'           => '45502',
+                'latitude'      => '39.869081',
+                'logitude'      => '-83.889457',
+                'search_radius' => 30
             ],
             [
-                'name'     => "Justine's condo",
-                'street'   => '108 Marco Ln.',
-                'city'     => 'Washington Township',
-                'state'    => 'OH',
-                'zip'      => '45458',
-                'latitude' => '39.607306',
-                'logitude' => '-84.156642',
+                'name'          => "Justine's condo",
+                'street'        => '108 Marco Ln.',
+                'city'          => 'Washington Township',
+                'state'         => 'OH',
+                'zip'           => '45458',
+                'latitude'      => '39.607306',
+                'logitude'      => '-84.156642',
+                'search_radius' => 5
             ],
             [
-                'name'     => "Work",
-                'street'   => '1202 E. Dayton-Yellow Springs Rd.',
-                'city'     => 'Fairborn',
-                'state'    => 'OH',
-                'zip'      => '45324',
-                'latitude' => '39.783138',
-                'logitude' => '-83.995284',
+                'name'          => "Work",
+                'street'        => '1202 E. Dayton-Yellow Springs Rd.',
+                'city'          => 'Fairborn',
+                'state'         => 'OH',
+                'zip'           => '45324',
+                'latitude'      => '39.783138',
+                'logitude'      => '-83.995284',
+                'search_radius' => 30
             ],
         ];
 
@@ -58,6 +61,7 @@ class LocationSeeder extends Seeder
         $l->zip = $location['zip'];
         $l->latitude = $location['latitude'];
         $l->longitude = $location['logitude'];
+        $l->search_radius = $location['search_radius'];
 
         $l->save();
     }

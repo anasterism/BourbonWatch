@@ -12,10 +12,9 @@
 */
 
 Route::get('/', function () {
-    $json = Storage::get('agencies.json');
-    $object = json_decode($json);
+    $result = App\Asterism\OHLQ\Client::fetch(2880);
 
-    dd($object);
+    dd($result);
 
     return view('welcome');
 });

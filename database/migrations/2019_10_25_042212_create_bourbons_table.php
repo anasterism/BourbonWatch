@@ -14,7 +14,7 @@ class CreateBourbonsTable extends Migration
     public function up()
     {
         Schema::create('bourbons', function (Blueprint $table) {
-            $table->bigInteger('id')->primary();
+            $table->string('id', 10)->primary();
             $table->string('name', 255);
             $table->string('distillery', 255);
             $table->string('image_url', 255);
