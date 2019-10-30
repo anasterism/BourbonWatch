@@ -8,6 +8,8 @@ use GuzzleHttp\Client as GuzzleClient;
 class Client
 {
 
+    private $result;
+
     public static function fetch(int $bourbonId)
     {
         $guzzle = new GuzzleClient();
@@ -60,10 +62,8 @@ class Client
 
             if (count($arr)) {
                 foreach($match as $prop => $obj) {
-                    $id = (int)str_replace('A', '', $prop);
-                    $obj->agency_id = $id;
-                    
-                    $return[] = $obj;
+                    $id          = (int)str_replace('A', '', $prop);
+                    $return[$id] = $obj->f;
                 }
             }
         }
