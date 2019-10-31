@@ -12,9 +12,16 @@
 */
 
 Route::get('/', function () {
-    $result = App\Asterism\OHLQ\Client::fetch(2880);
+    $bourbons = App\Models\Bourbon::all();
 
-    dd($result);
+    foreach ($bourbons as $bourbon)
+    {
+        $result = App\Asterism\OHLQ\Client::fetch($bourbon);
+
+        echo '<pre>';
+        print_r($result);
+        echo '</pre>';
+    }
 
     return view('welcome');
 });
