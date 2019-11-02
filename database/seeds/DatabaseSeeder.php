@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(BourbonSeeder::class);
         $this->call(LocationSeeder::class);
+        $this->call(NotificationSeeder::class);
     }
 }

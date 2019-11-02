@@ -2,21 +2,17 @@
 
 namespace App\Asterism\OHLQ;
 
-use App\Models\Bourbon;
 use App\Models\Agency;
 use App\Models\Location;
 
 class Result 
 {
 
-    public $bourbon   = null;
     public $agency    = null;
     public $locations = null;
-    public $aquirable = false;
 
-    public function __construct(Bourbon $bourbon, int $agencyId, string $stockLevel)
+    public function __construct(int $agencyId, string $stockLevel)
     {
-        $this->bourbon   = $bourbon;
         $this->agency    = Agency::find($agencyId);
         $this->locations = Location::orderBy('id', 'DESC')->get();
 
@@ -43,6 +39,8 @@ class Result
                 $this->aquirable = true;
             }
         }
+
+        $this->locations = $this->locations->sortBy('distance');
     }
 
     private function calculateDistance($lat1, $lon1, $lat2, $lon2, $unit) 

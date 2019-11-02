@@ -2,21 +2,21 @@
 
 namespace App\Asterism\OHLQ;
 
-use App\Models\Bourbon;
 use App\Asterism\OHLQ\Result;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client as GuzzleClient;
+use Illuminate\Support\Collection;
 
 class Client
 {
 
-    public static function fetch(Bourbon $bourbon)
+    public static function fetch(int $bourbonId)
     {
         $guzzle = new GuzzleClient();
-        $result = $guzzle->get(env('OHLQ_ENDPOINT') . $bourbon->id);
+        $result = $guzzle->get(env('OHLQ_ENDPOINT') . $bourbonId);
         $body   = $result->getBody()->getContents();
         $json   = self::jsToJson($body);
-        $obj    = self::processResults($bourbon, $json);
+        $obj    = self::processResults($json);
 
         return $obj;
     }
@@ -51,7 +51,7 @@ class Client
      * @param array Array of JSON formatted strings.
      * @return array Array of stdObjects
      */
-    private static function processResults(Bourbon $bourbon, array $json)
+    private static function processResults(array $json)
     {
         $return = [];
 
@@ -63,12 +63,12 @@ class Client
             if (count($arr)) {
                 foreach($match as $prop => $obj) {
                     $agencyId = (int)str_replace('A', '', $prop);
-                    $return[] = new Result($bourbon, $agencyId, $obj->f);
+                    $return[] = new Result($agencyId, $obj->f);
                 }
             }
         }
 
-        return $return;
+        return new Collection($return);
     }
     
 }

@@ -12,16 +12,5 @@
 */
 
 Route::get('/', function () {
-    $bourbons = App\Models\Bourbon::all();
-
-    foreach ($bourbons as $bourbon)
-    {
-        $result = App\Asterism\OHLQ\Client::fetch($bourbon);
-
-        echo '<pre>';
-        print_r($result);
-        echo '</pre>';
-    }
-
     return view('welcome');
 });
