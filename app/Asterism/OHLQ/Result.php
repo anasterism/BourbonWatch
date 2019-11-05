@@ -4,6 +4,8 @@ namespace App\Asterism\OHLQ;
 
 use App\Models\Agency;
 use App\Models\Location;
+use Exception;
+use Illuminate\Support\Facades\Log;
 
 class Result 
 {
@@ -17,7 +19,11 @@ class Result
         $this->locations = Location::orderBy('id', 'DESC')->get();
 
         if ($this->agency != null || !empty($this->locations)) {
-            $this->processLocations();
+            try {
+                $this->processLocations();
+            } catch (Exception $e) {
+                Log::error("Error processing locations for agency #{$agencyId}");
+            } 
         }
     }
 
