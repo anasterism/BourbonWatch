@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
 class Client
 {
 
-    public static function fetch(int $bourbonId)
+    public static function fetch(string $bourbonId)
     {
         $guzzle = new GuzzleClient();
         $result = $guzzle->get(env('OHLQ_ENDPOINT') . $bourbonId);

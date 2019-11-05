@@ -43,6 +43,8 @@ class AgencySync extends Command
         $data  = json_decode($data);
         $count = count($data->agencies);
 
+        Agency::truncate();
+
         $this->info("Importing {$count} agencies from agencies.json");
         $progress = $this->output->createProgressBar($count);
 

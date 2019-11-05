@@ -9,6 +9,7 @@ use App\Models\Notification;
 use Twilio\Rest\Client;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class AvailabilityCheck extends Command
 {
@@ -84,6 +85,7 @@ class AvailabilityCheck extends Command
                 'body' => "{$notification->recipient_name}! Bourbon aquired! {$bourbonName} was spotted at {$agency->name}, {$agency->street} {$agency->city}, {$agency->state} {$agency->zip}. Only {$location->distance} miles from {$location->name}"
             ]
         );
+        Log::info("SMS SENT! {$notification->recipient_name}! Bourbon aquired! {$bourbonName} was spotted at {$agency->name}, {$agency->street} {$agency->city}, {$agency->state} {$agency->zip}. Only {$location->distance} miles from {$location->name}");
     }
 
     private function normalizeNumber($number) {
