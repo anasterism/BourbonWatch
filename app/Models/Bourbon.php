@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Cache;
 
 class Bourbon extends Model
 {
+    
+    protected $keyType = 'string';
 
     public function getAvailabilityAttribute()
     {
