@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('bourbon:availability')->cron('0 */3 * * *');
+        $schedule->command('bourbon:availability')->hourly();
     }
 
     /**
